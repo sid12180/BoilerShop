@@ -6,14 +6,6 @@ BoilerShop is an application designed to search through user-provided product li
 
 When shopping online for certain products, it's easy for consumers to feel overwhelmed by the sheer number of options available on the internet. Personally, whenever I search for products such as keyboards or headsets, I often spend hours trying to find the perfect option. Many of my friends and peers have also experienced similar frustrations when shopping online, which is why I hope to develop an application that makes the process of searching for products less overwhelming. 
 
-## Future Plans
-
-- Providing explanations for why the chosen product best fits the user’s interests and needs
-
-- Design a more user-friendly and cleaner interface using Java
-
-- Ensuring the application can handle potentially invalid URL links or missing information around the product itself while still maintaining an accurate ranking system of the choices given
-
 ## MVP Scope 
 
 - Users must be able to input multiple product URLs into the application 
@@ -24,6 +16,13 @@ When shopping online for certain products, it's easy for consumers to feel overw
 
 - Must contain a ranking system of the products best suited towards the user’s interests 
 
+## Future Plans
+
+- Providing explanations for why the chosen product best fits the user’s interests and needs
+
+- Design a more user-friendly and cleaner interface using Java
+
+- Ensuring the application can handle potentially invalid URL links or missing information around the product itself while still maintaining an accurate ranking system of the choices given
 
 ## How It Works
 
