@@ -11,13 +11,14 @@ When shopping online for certain products, it's easy for consumers to feel overw
 A paragraph or a few bullets explaining what the software does at a
 high level. If you have a diagram, embed it here:
 
-![System diagram](docs/diagram.png)
+![System diagram](<img width="854" height="903" alt="System Diagram" src="https://github.com/user-attachments/assets/5568ae63-539b-44e3-9924-c9b0097ab88b" />
+)
 
 ## Tech Stack
 
-- **Language:** Bash / Java / etc.
-- **Libraries:** any external dependencies
-- **External tools:** cron, curl, APIs, etc.
+- **Language:** Java
+- **Libraries:** Java Swing, Java ArrayLists, Java HttpClient, and Gson
+- **External tools:** CartScout API
 
 ## Setup
 
