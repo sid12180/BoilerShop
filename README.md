@@ -1,6 +1,6 @@
 # BoilerShop
 
-SmartShop is an application designed to search through user-provided product links and grab information in order to provide the best product option aligning with the consumer's interest and needs. 
+BoilerShop is an application designed to search through user-provided product links and grab information in order to provide the best product option aligning with the consumer's interest and needs. 
 
 ## The Problem
 
