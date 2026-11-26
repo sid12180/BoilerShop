@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class ProductInfo {
 
-    public String fetchProduct(String url) {
+    public String retrieveProduct(String url) {
         String apiKey = System.getenv("CARTSCOUT_API_KEY");
 
         try (HttpClient client = HttpClient.newHttpClient()) {
