@@ -7,6 +7,7 @@ import java.io.IOException;
 public class ProductInfo {
 
     public String retrieveProduct(String url) {
+        // "CARTSCOUT_API_KEY" is declared as an environment variable to prevent the API key from being displayed on Github
         String apiKey = System.getenv("CARTSCOUT_API_KEY");
 
         try (HttpClient client = HttpClient.newHttpClient()) {
