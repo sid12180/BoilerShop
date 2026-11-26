@@ -18,13 +18,6 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        String apiKey = System.getenv("CARTSCOUT_API_KEY");
-
-        if (apiKey != null && !apiKey.isBlank()) {
-            IO.println("API Key successfully retrieved");
-        } else {
-            IO.println("API Key not found.");
-        }
 
     }
 }
