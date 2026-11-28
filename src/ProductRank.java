@@ -18,6 +18,7 @@ public class ProductRank {
             }
         }
     }
+
     private boolean matchPreferences(Product product, Preferences preference) {
         if (preference.getBudget() != -1 && product.getPrice() > preference.getBudget()) {
             return false;

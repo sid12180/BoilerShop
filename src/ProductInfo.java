@@ -1,3 +1,5 @@
+import com.google.gson.JsonObject;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -10,12 +12,16 @@ public class ProductInfo {
         // "CARTSCOUT_API_KEY" is declared as an environment variable to prevent the API key from being displayed on GitHub
         String apiKey = System.getenv("CARTSCOUT_API_KEY");
 
+        JsonObject body = new JsonObject();
+        body.addProperty("url", url);
+
         try (HttpClient client = HttpClient.newHttpClient()) {
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(url))
+                    .uri(URI.create("https://cartscout-api.p.rapidapi.com/api/v1/products/extract"))
                     .header("X-RapidAPI-Key", apiKey)
                     .header("X-RapidAPI-Host", "cartscout-api.p.rapidapi.com")
-                    .GET()
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(body.toString()))
                     .build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());

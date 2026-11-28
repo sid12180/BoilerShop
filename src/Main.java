@@ -19,10 +19,15 @@ import java.awt.event.ActionEvent;
 
 import java.util.ArrayList;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 public class Main {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             ArrayList<Product> products = new ArrayList<>();
+            ArrayList<String> urls = new ArrayList<>();
+            ProductInfo info = new ProductInfo();
             ProductRank ranking = new ProductRank();
             Color background = Color.decode("#363737");
             Color gold = Color.decode("#CFB991");
@@ -122,6 +127,75 @@ public class Main {
 
             buttons.add(compareButton);
             buttons.add(clearButton);
+
+            urlField.addActionListener(e -> {
+                if (!urlField.getText().isEmpty()) {
+                    urls.add(urlField.getText());
+                    urlLinks.append(urlField.getText() + "\n");
+                    urlField.setText("");
+                }
+            });
+
+            clearButton.addActionListener(e -> {
+                urlField.setText("");
+                budget.setText("");
+                rating.setText("");
+                urlLinks.setText("");
+                results.setText("");
+
+                urls.clear();
+                products.clear();
+            });
+
+            compareButton.addActionListener(e -> {
+                try {
+                    double userBudget = -1.0;
+                    double userRating = 0.0;
+
+                    if (!budget.getText().isBlank()) {
+                        userBudget = Double.parseDouble(budget.getText());
+                    }
+
+                    if (!rating.getText().isBlank()) {
+                        userRating = Double.parseDouble(rating.getText());
+                    }
+
+                    Preferences pref = new Preferences(userBudget, userRating);
+                    Gson gson = new Gson();
+
+                    products.clear();
+                    results.setText("");
+
+                    for (String url : urls) {
+                        String json = info.retrieveProduct(url);
+
+                        if (json != null) {
+                            JsonObject data = gson.fromJson(json, JsonObject.class);
+                            JsonObject p = data.getAsJsonObject("product");
+
+                            String name = p.get("title").getAsString();
+                            String desc = p.get("description").getAsString();
+                            double price = p.get("price").isJsonNull() ? -1 : p.get("price").getAsDouble();
+                            double productRating = p.getAsJsonObject("rating").get("value").getAsDouble();
+                            Product product = new Product(name, url, desc, price, productRating);
+
+                            products.add(product);
+                        }
+                    }
+
+                    ranking.rank(products, pref);
+
+                    if (products.isEmpty()) {
+                        results.setText("These products do not have what you are looking for. Try finding others!");
+                    } else {
+                        for (Product product : products) {
+                            results.append(product.getName() + "\n\n");
+                        }
+                    }
+                } catch (NumberFormatException ex) {
+                    results.setText("Invalid Budget or rating");
+                }
+            });
 
             frame.add(heading);
             frame.add(productInput);
